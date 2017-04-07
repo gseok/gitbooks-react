@@ -1,3 +1,4 @@
-# My Awesome Book
+# React.js Book
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+react.js을 사용하면서 공부한 내용이나, 트러블 슈팅, 팁 등을 정리한 자료
+
