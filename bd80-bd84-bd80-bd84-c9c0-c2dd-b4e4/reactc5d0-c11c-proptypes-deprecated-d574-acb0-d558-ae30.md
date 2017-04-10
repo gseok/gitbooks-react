@@ -14,8 +14,6 @@ npm으로 React을 새로 버전업 한 이후 아래와 같은 warning 메시�
 
 React가 가이드하는 대로, `prop-types` 라이브러리를 설치해서 사용하면 간단히 해결된다.
 
-
-
 #### 해결방법
 
 **React의  **[**prop-types library**](https://www.npmjs.com/package/prop-types)** 을 설치하기**
@@ -26,11 +24,9 @@ React가 가이드하는 대로, `prop-types` 라이브러리를 설치해서 �
 $ npm install --save prop-types
 ```
 
-
-
 [**prop-types library**](https://www.npmjs.com/package/prop-types)** 사용하기**
 
-```
+```js
 import React from 'react';
 import ReactDOM from 'react-dom';
 
