@@ -52,11 +52,53 @@ ReactDOM.render(<App />, root);
 
 * [`componentWillUnmount()`](https://facebook.github.io/react/docs/react-component.html#componentwillunmount)
 
- 
 
- 
 
- 
+#### API Detail
+
+**constructor\(\)**
+
+```
+constructor(props)
+```
+
+* React component가 mount과정에서 가장 먼저 호출 됩니다. \(즉 아직 DOM으로 mount되기 전에 호출\)
+* 해당 함수 내부에서, component의 state을 초기화 할 수 있습니다.
+* state을 별도로 사용할 필요가 없다면, constructor을 작성하지 않아도 무방합니다.
+* 주의
+  * 해당 함수의 첫번째 라인은 반드시 `super(props)` 을 호출해야 합니다. \(미호출시 prop가 생성되지 않음\)
+  * component가 prop을 새로 받았을때 \(부모가 prop을 다시 전달했을때\), 해당 component가 prop값으로 자신의 state을 업데이트 해야하는 경우, 여기서 작성하지 마세요!! 해당 동작은 `componentWillReceiveProps(nextProps)` 에서 작성하세요.
+  * 즉 여기서는 state init 정도만 하세요~
+
+
+
+**componentWillMount\(\)**
+
+```
+componentWillMount()
+```
+
+
+
+
+
+**render\(\)**
+
+```
+render()
+```
+
+* 랜더링을 담당합니다
+* 필수 함수, components에 해당 메소드를 반드시 만들어야 합니다
+* 랜더링을 할 것이 없는경우, `null` or `false`  을 리턴합니다.
+* `pure`해야 합니다. 의미는 `render()`에서 `state`을 수정하면 안됩니다.
+  * \(state을 수정하면 돌고 돌아 다시 render\(\) 가 호출될 수 있습니다.\)
+* 주의
+  * browser와 직접 interaction을 여기서 하지 마세요. \(즉 DOM을 여기서 조작하지 마세요\)
+  * browser와의 interaction은 `componentDidMount()` 나 다른 lifecycle api에서 하세요
+  * `shouldComponentUpdate()` 가 `false`을 리턴하면, `render()`는 호출되지 않습니다.
+
+
 
 #### 참고
 
