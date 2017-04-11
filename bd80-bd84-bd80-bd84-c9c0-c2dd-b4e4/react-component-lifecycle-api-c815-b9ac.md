@@ -137,8 +137,6 @@ shouldComponentUpdate(nextProps, nextState)
   * 만약 부모\(상위\) 컴포넌트가 re-rendering되면, 자식\(하위\) 컴포넌트도 모두 render 됩니다.
   * 부모\(상위\) 컴포넌트에서 최적화를 할때 사용합니다.
 
-
-
 **componentWillUpdate\(\)**
 
 ```js
@@ -163,10 +161,20 @@ componentDidUpdate(prevProps, prevState)
 * network requesets을 사용하기 좋은 위치입니다. 특히 현재props와 이전props을 비교 할 수 있습니다.
 * 주의
   * 이 함수는 init과정 \(최초 처음 render하는 과정\)에서는 호출되지 않습니다.
+  * `shouldComponentUpdate()`가 `false`을 리턴한 경우 호출되지 않습니다.
 
 
 
+**componentWillUnmount\(\)**
 
+```js
+componentWillUnmount()
+```
+
+* 이 함수는, `component`가 `unmounted`되고 `destroyed`되기 직전에 불립니다. \(아직 unmount되기 전에\)
+* 사용한 `resource`을 `cleaning` 가능한 공간입니다. 즉 network request을 취소하거나, timer을 초기화 하거나, `componentDidMount`에서 생성한 DOM elements을 제거하는 등의 cleaning작업을 할 수 있습니다.
+* 주의
+  * 이 함수는 상위 `component`가 `unmount`했을때, 하위 `component`의 `unmount`가 이루어 집니다.
 
 
 
