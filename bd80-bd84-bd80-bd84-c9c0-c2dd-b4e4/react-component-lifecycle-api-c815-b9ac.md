@@ -122,8 +122,6 @@ componentWillReceiveProps(nextProps)
 * 주의
   * 여기서 `state`을 `setting`해도 `re-rendering(update)` 과정에 영향을 주지 않습니다.
 
-
-
 **shouldComponentUpdate\(\)**
 
 ```js
@@ -138,6 +136,33 @@ shouldComponentUpdate(nextProps, nextState)
   * 만약 `false`를 리턴하면 다음 과정인, `componentWillUpdate()`, `render()`, `componentDidUpdate()` 는 호출되지 않습니다.
   * 만약 부모\(상위\) 컴포넌트가 re-rendering되면, 자식\(하위\) 컴포넌트도 모두 render 됩니다.
   * 부모\(상위\) 컴포넌트에서 최적화를 할때 사용합니다.
+
+
+
+**componentWillUpdate\(\)**
+
+```js
+componentWillUpdate(nextProps, nextState)
+```
+
+* `re-rendering(update)`가 이루어지기 직전에 \(즉 render\(\)이전에\) 호출됩니다.
+* 이 함수는, 실제 `update`이전에 어떤 일을 준비해야 하는 경우 사용 할 수 있습니다. \(prop이나 state와 무관하게 class에서 무언가 준비해야 한느경우?\)
+* 주의
+  * 이 함수는 init과정 \(최초 처음 render하는 과정\)에서는 호출되지 않습니다.
+  * 여기서 `state`을 변경하면 `무한루프`에 빠지게 됩니다. 절대 `this.setState()` 을 여기서 호출하지 마세요. 만약 `prop`변경에 따른 `state`의 변경은, `componentWillReceiveProps()`을 사용하세요.
+  * `shouldComponentUpdate()`가 `false`을 리턴한 경우 호출되지 않습니다.
+
+**componentDidUpdate\(\)**
+
+```js
+componentDidUpdate(prevProps, prevState)
+```
+
+* `component`가 `rendering`을 마친 이후 \(`render()` 호출이후\)즉시 호출됩니다.
+* `DOM`을 조작 할 수 있습니다. \(`component`가 `Update`된게 반영된 `DOM`\)
+* network requesets을 사용하기 좋은 위치입니다. 특히 현재props와 이전props을 비교 할 수 있습니다.
+* 주의
+  * 이 함수는 init과정 \(최초 처음 render하는 과정\)에서는 호출되지 않습니다.
 
 
 
