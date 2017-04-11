@@ -207,7 +207,7 @@ componentDidMount()             |    componentDidUpdate()
                                 |
 componentWillUnmount()          |
                                 |
---------------------------------+------------------------------------                                
+--------------------------------+------------------------------------
                                      *Called only with new props
 ```
 
