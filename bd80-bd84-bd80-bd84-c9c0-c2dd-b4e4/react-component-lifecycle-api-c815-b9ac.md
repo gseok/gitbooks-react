@@ -25,19 +25,42 @@ ReactDOM.render(<App />, root);
 
 복잡해 보이지만 첫번째 그림처럼 몇가지 세션으로 나누어서 보면 이해하기 쉽다.
 
-Mounting
+##### Mounting
 
-마운팅 관련 함수들은, 처음 render가 호출된 이 후, component가 instance화 되고, 실제 DOM으로 
+마운팅 관련 함수들은, 처음 render가 호출된 이 후, component가 생성\(instance화\) 되고, 실제 DOM으로
+
+적용 될 때 까지를 담당합니다.
+
+* [`constructor()`](https://facebook.github.io/react/docs/react-component.html#constructor)
+* [`componentWillMount()`](https://facebook.github.io/react/docs/react-component.html#componentwillmount)
+* [`render()`](https://facebook.github.io/react/docs/react-component.html#render) - update의 render와 동일한 함수 입니다.
+* [`componentDidMount()`](https://facebook.github.io/react/docs/react-component.html#componentdidmount)
+
+##### Updating
+
+업데이트 관련 함수들은, props 나 state가 변화된경우, 이런경우 component가 다시 그려져야\(re-rendered\) 하는 경우를 담당합니다.
+
+* [`componentWillReceiveProps()`](https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops)
+* [`shouldComponentUpdate()`](https://facebook.github.io/react/docs/react-component.html#shouldcomponentupdate)
+* [`componentWillUpdate()`](https://facebook.github.io/react/docs/react-component.html#componentwillupdate)
+* [`render()`](https://facebook.github.io/react/docs/react-component.html#render) - mounting에 render와 동일한 함수 입니다.
+* [`componentDidUpdate()`](https://facebook.github.io/react/docs/react-component.html#componentdidupdate)
 
 
 
-Updating
+##### Unmounting
+
+이 경우는 유일하게, component가 DOM에서 제거될때 불리게 됩니다.
+
+* [`componentWillUnmount()`](https://facebook.github.io/react/docs/react-component.html#componentwillunmount)
+
+---
 
 
 
-Unmounting
 
 
+---
 
 #### 참고
 
