@@ -46,21 +46,17 @@ ReactDOM.render(<App />, root);
 * [`render()`](https://facebook.github.io/react/docs/react-component.html#render) - mounting에 render와 동일한 함수 입니다.
 * [`componentDidUpdate()`](https://facebook.github.io/react/docs/react-component.html#componentdidupdate)
 
-
-
 ##### Unmounting
 
 이 경우는 유일하게, component가 DOM에서 제거될때 불리게 됩니다.
 
 * [`componentWillUnmount()`](https://facebook.github.io/react/docs/react-component.html#componentwillunmount)
 
----
+ 
 
+ 
 
-
-
-
----
+ 
 
 #### 참고
 
