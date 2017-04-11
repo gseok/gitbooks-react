@@ -29,7 +29,7 @@ ReactDOM.render(<App />, root);
 
 마운팅 관련 함수들은, 처음 render가 호출된 이 후, component가 생성\(instance화\) 되고, 실제 DOM으로
 
-적용 될 때 까지를 담당합니다.
+적용 될 때 까지를 담당합니다. render을 제외하고 한번씩만 호출된다고 보면 됩니다.
 
 * [`constructor()`](https://facebook.github.io/react/docs/react-component.html#constructor)
 * [`componentWillMount()`](https://facebook.github.io/react/docs/react-component.html#componentwillmount)
@@ -38,7 +38,7 @@ ReactDOM.render(<App />, root);
 
 ##### Updating
 
-업데이트 관련 함수들은, props 나 state가 변화된경우, 이런경우 component가 다시 그려져야\(re-rendered\) 하는 경우를 담당합니다.
+업데이트 관련 함수들은, props 나 state가 변화된경우, 이런경우 component가 다시 그려져야\(re-rendered\) 하는 경우를 담당합니다. mount와 다르게 여러번 호출 될 수 있습니다.
 
 * [`componentWillReceiveProps()`](https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops)
 * [`shouldComponentUpdate()`](https://facebook.github.io/react/docs/react-component.html#shouldcomponentupdate)
@@ -48,17 +48,15 @@ ReactDOM.render(<App />, root);
 
 ##### Unmounting
 
-이 경우는 유일하게, component가 DOM에서 제거될때 불리게 됩니다.
+이 경우는 유일하게, component가 DOM에서 제거될때 불리게 됩니다. component제거시 한번 호출된다고 보면 됩니다.
 
 * [`componentWillUnmount()`](https://facebook.github.io/react/docs/react-component.html#componentwillunmount)
-
-
 
 #### API Detail
 
 **constructor\(\)**
 
-```
+```js
 constructor(props)
 ```
 
@@ -70,21 +68,23 @@ constructor(props)
   * component가 prop을 새로 받았을때 \(부모가 prop을 다시 전달했을때\), 해당 component가 prop값으로 자신의 state을 업데이트 해야하는 경우, 여기서 작성하지 마세요!! 해당 동작은 `componentWillReceiveProps(nextProps)` 에서 작성하세요.
   * 즉 여기서는 state init 정도만 하세요~
 
-
-
 **componentWillMount\(\)**
 
-```
+```js
 componentWillMount()
 ```
 
-
+* DOM 마운팅 이전에 \(한번\)호출됩니다. 사실 `constructor()` 호출 이후 `render()`이전에 호출됩니다.
+* 따라서, 여기서 `state`을 `setting` 해도 `re-rendering(update)`에 영향을 주지 않습니다.
+* 주의
+  * 서버 사이드 랜더링에서 DOM마운트 전에 호출 가능한 유일한 함수 입니다.
+  * 일반적으로는 `constructor()`을 사용하는 것을 추천합니다.
 
 
 
 **render\(\)**
 
-```
+```js
 render()
 ```
 
@@ -97,6 +97,46 @@ render()
   * browser와 직접 interaction을 여기서 하지 마세요. \(즉 DOM을 여기서 조작하지 마세요\)
   * browser와의 interaction은 `componentDidMount()` 나 다른 lifecycle api에서 하세요
   * `shouldComponentUpdate()` 가 `false`을 리턴하면, `render()`는 호출되지 않습니다.
+
+
+
+**componentDidMount\(\)**
+
+```js
+componentDidMount()
+```
+
+* DOM 마운팅 이후 \(한번\) 호출됩니다.
+* DOM을 얻어올 수 있습니다. \(DOM이 마운트 된 다음 호출되니까..\)
+* 원격\(예를들어 서버...\)에서 `data`을 가져올 필요가 있는경우 \(즉 가져와서 state을 변경해야 하는경우\), 이 함수에서 사용하면 좋습니다. \(ajax call === `network request` 하기 좋은위치...\)
+  * 왜냐면, 이미 DOM은 mount했고, `state`을 변경해서 `re-rendering`하기 좋은 위치
+* 주의
+  * 여기서 `state`을 `setting` 하면 `re-rendering(update)` 과정이 수행됩니다.
+
+
+
+**componentWillReceiveProps\(\)**
+
+```js
+componentWillReceiveProps(nextProps)
+```
+
+* 마운트 이전에는 절대 불리지 않습니다.
+* 이미 마운트가 된 이후, 마운트된 component가 새로운 props을 받게 되면 호출 됩니다.
+* prop 변화에 따라 자신의 state을 갱신 해야 하는 경우 사용하면 좋습니다.
+  * this.props와 nextProps의 비교가 가능합니다.
+* 주의
+  * 여기서 `state`을 `setting`해도 `re-rendering(update)` 과정에 영향을 주지 않습니다.
+
+
+
+
+
+**re-rendering\(update\)에 영향을 주지 않는다는 의미는?**
+
+* **`this.setState()`** 함수를 호출하면, `life-cycle` 함수중 `shouldComponentUpdate()` 가 호출되고, 최종적으로  `render()` 함수를 호출하게 됩니다.
+* 만약 모든 함수가 `re-rendering(update)`에 영향을 준다면, `무한루프`에 빠지거나, `render()`을 `여러번` 호출하게 되는 현상이 발생 할 수 있습니다.
+* 따라서 react 에서는 어떤 `life-cycle` 함수에서는 `this.setState()`을 호출해도, 자연스럽게 `render()`로 가게 되는 경우, `update 루틴`을 발생하지 않고, 자연스럽게 `render()`로 연결되도록 합니다. \(즉 state 변화에 따라 event가 발생해서, update을 타게 하지 않아도, render\(\)가 되면, 굳이 event을 발생하지 않습니다.\)
 
 
 
