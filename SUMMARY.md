@@ -7,4 +7,5 @@
   * [React 에서 dom을 prop로 받아서 사용하는 방법](bd80-bd84-bd80-bd84-c9c0-c2dd-b4e4/react-c5d0-c11c-dom-c744-prop-b85c-bc1b-c544-c11c-c0ac-c6a9-d558-b294-bc29-bc95.md)
   * [React에서 PropTypes deprecated 해결하기](bd80-bd84-bd80-bd84-c9c0-c2dd-b4e4/reactc5d0-c11c-proptypes-deprecated-d574-acb0-d558-ae30.md)
   * [React Props와 State 개념 정리](bd80-bd84-bd80-bd84-c9c0-c2dd-b4e4/react-propsc640-state-ac1c-b150-c815-b9ac.md)
+  * [React component lifecycle, API 정리](bd80-bd84-bd80-bd84-c9c0-c2dd-b4e4/react-component-lifecycle-api-c815-b9ac.md)
 
