@@ -8,5 +8,11 @@
 
 현재는 deprecated된 함수 대신 constructor에서 state을 초기화 하고, prop는 super에 던지게 되어 있다.
 
+좀더 알기 쉬운 그림을 보자
+
+![](/assets/react-life-cycle-2.png)
+
+설명
+
 
 
