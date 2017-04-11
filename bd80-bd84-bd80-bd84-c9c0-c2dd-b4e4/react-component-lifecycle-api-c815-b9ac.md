@@ -80,8 +80,6 @@ componentWillMount()
   * 서버 사이드 랜더링에서 DOM마운트 전에 호출 가능한 유일한 함수 입니다.
   * 일반적으로는 `constructor()`을 사용하는 것을 추천합니다.
 
-
-
 **render\(\)**
 
 ```js
@@ -98,8 +96,6 @@ render()
   * browser와의 interaction은 `componentDidMount()` 나 다른 lifecycle api에서 하세요
   * `shouldComponentUpdate()` 가 `false`을 리턴하면, `render()`는 호출되지 않습니다.
 
-
-
 **componentDidMount\(\)**
 
 ```js
@@ -112,8 +108,6 @@ componentDidMount()
   * 왜냐면, 이미 DOM은 mount했고, `state`을 변경해서 `re-rendering`하기 좋은 위치
 * 주의
   * 여기서 `state`을 `setting` 하면 `re-rendering(update)` 과정이 수행됩니다.
-
-
 
 **componentWillReceiveProps\(\)**
 
@@ -130,15 +124,34 @@ componentWillReceiveProps(nextProps)
 
 
 
+**shouldComponentUpdate\(\)**
+
+```js
+shouldComponentUpdate(nextProps, nextState)
+```
+
+* `re-rendering(update)`을 진짜 할지 말지 결정하는 함수 입니다.
+* 기본적으로 `props`나 `state`가 변경되면, `shouldComponentUpdate()`가 호출된 이후, `render()`을 호출할지 말지 결정하게 됩니다.
+* react의 `기본은 true`을 리턴해서 `항상 re-rendering(update)` 가 되도록 합니다 .\(즉 render\(\)를 호출하도록\)
+* 이 함수의 목적은, 현재 props 와 state &lt;-&gt; next props 와 state을 비교하여, 진짜 `re-rendering`할지를 결정하게 합니다.
+* 주의
+  * 만약 `false`를 리턴하면 다음 과정인, `componentWillUpdate()`, `render()`, `componentDidUpdate()` 는 호출되지 않습니다.
+  * 만약 부모\(상위\) 컴포넌트가 re-rendering되면, 자식\(하위\) 컴포넌트도 모두 render 됩니다.
+  * 부모\(상위\) 컴포넌트에서 최적화를 할때 사용합니다.
+
+
+
+
+
+
+
 
 
 **re-rendering\(update\)에 영향을 주지 않는다는 의미는?**
 
-* **`this.setState()`** 함수를 호출하면, `life-cycle` 함수중 `shouldComponentUpdate()` 가 호출되고, 최종적으로  `render()` 함수를 호출하게 됩니다.
+* `this.setState()` 함수를 호출하면, `life-cycle` 함수중 `shouldComponentUpdate()` 가 호출되고, 최종적으로  `render()` 함수를 호출하게 됩니다.
 * 만약 모든 함수가 `re-rendering(update)`에 영향을 준다면, `무한루프`에 빠지거나, `render()`을 `여러번` 호출하게 되는 현상이 발생 할 수 있습니다.
 * 따라서 react 에서는 어떤 `life-cycle` 함수에서는 `this.setState()`을 호출해도, 자연스럽게 `render()`로 가게 되는 경우, `update 루틴`을 발생하지 않고, 자연스럽게 `render()`로 연결되도록 합니다. \(즉 state 변화에 따라 event가 발생해서, update을 타게 하지 않아도, render\(\)가 되면, 굳이 event을 발생하지 않습니다.\)
-
-
 
 #### 참고
 
