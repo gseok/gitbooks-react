@@ -50,13 +50,24 @@ this.setState((prevState, props) => {
 });
 ```
 
-setState의 두번째 param인 callback은 optional한 인자이다.
+`setState()`의 두번째 param인 `callback`은 `optional`한 인자이다.
 
-nextState에 Object 형태를 쓰던, Function 형태를 쓰던, callback에 function으로 param을 줄 수 있다.
+`nextState`에 `Object` 형태를 쓰던, `Function` 형태를 쓰던, `callback`에 `function`으로 `param`을 줄 수 있다.
 
-setState의 callback은 setState가 완료되고 component가 re-rendered된 이후 호출된다. 따라서, re-rendered이후의 어던 확인이나 동작이 필요할때 간단히 기술해서 사용 가능하다.
+`setState()`의 `callback`은 `setState()`가 완료되고 `component`가 `re-rendered`된 이후 호출된다. 따라서, `re-rendered`이후의 어던 확인이나 동작이 필요할때 간단히 기술해서 사용 가능하다.
 
-하지만, 공식 문서에는, 이 callback에서 어떤 동작을 하기보다는, componentDidUpdate\(\)을 사용하라고 추천하고 있다.
+하지만, 공식 문서에는, 이 callback에서 어떤 동작을 하기보다는, `componentDidUpdate()`을 사용하라고 추천하고 있다.
+
+
+
+setState\(\) 동작 이해
+
+사용법 이외, setState\(\)의 동작\(특징\)을 잘 기억해 두면 좋다. 
+
+* setState\(\)는 비동기적으로 구동된다. 바꾸어 말하면, synchronous하 동작을 보장하지 않는다.
+* setState\(\)는 즉시 값을 merge하지 않고, pending된 형태로 동작한다. 따라서 setState\(\)호출후 this.state로 값을 확인했을때, 값이 변경되어 있을 수도 있고, 안되어 있을 수도 있다.
+* setState\(\)을 호출하고나면, component life cycle 함수인 shouldComponentUpdate\(\)가 호출된다.
+* setState\(\)을 호출했다고 해서, 항상 re-rendering 되는 것은 아니다. 즉 shouldComponentUpdate\(\)의 리턴값에 따라 re-rendering 여부가 결정된다.
 
 
 
