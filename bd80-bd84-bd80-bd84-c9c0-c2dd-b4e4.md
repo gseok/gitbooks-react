@@ -59,7 +59,7 @@ class Greeting extends React.Component {
   constructor(props) {
     super(props);
   }
-  
+
   render() {
     // 간단하게 render() 함수에서, 조건에 따라 render되는 부분을 만들면 된다
     const isLoggedIn = this.props.isLoggedIn;
@@ -70,14 +70,68 @@ class Greeting extends React.Component {
     }
   }
 }
-
 ```
 
 `state`값을 조건으로하여, 서로 다른 형태의 `Rendering`을 하는 것 역시 동일한 형태로 가능하다.
 
-아래는 `state`값에 따라 서로 다른 형태의 `Rendering`을 하는 예제이다
+아래는 `state`값에 따라 서로 다른 형태의 `Rendering`을 하는 예제이다.
 
+```js
+class UserGreeting extends React.Component {
+  render() {
+    return <h1>Welcome back!</h1>;
+  }
+}
 
+class GuestGreeting extends React.Component {
+  render() {
+    return <h1>Please sign up.</h1>;
+  }
+}
+
+class Greeting extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toggleLoginState = this.toggleLoginState.bind(this);
+    this.state = {
+      isLoggedIn: false
+    };
+  }
+  
+  toggleLoginState() {
+    this.setState((prevState) => {
+        return {
+          isLoggedIn: !prevState
+        };
+    });
+  }
+
+  render() {
+    // 간단하게 render() 함수에서, 조건에 따라 render되는 부분을 만들면 된다
+    const isLoggedIn = this.state.isLoggedIn;
+
+    if (isLoggedIn) {
+      return (
+        <div>
+          <button onClick={this.toggleLoginState} />
+          <UserGreeting />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <button onClick={this.toggleLoginState} />
+          <GuestGreeting />
+        </div>
+      );
+    }
+  }
+}
+```
+
+위 예제에서는, 간단하게, `isLoggedIn` 이라는 `state`을 `toggle` 하는 버튼과 함수를 추가했다.
+
+사실상 핵심은 `render`에서 실제 조건에 다라 다르게 그리게 하는데 있다.
 
 
 
