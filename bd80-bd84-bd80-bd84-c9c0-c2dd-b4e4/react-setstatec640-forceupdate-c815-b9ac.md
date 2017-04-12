@@ -58,18 +58,14 @@ this.setState((prevState, props) => {
 
 하지만, 공식 문서에는, 이 callback에서 어떤 동작을 하기보다는, `componentDidUpdate()`을 사용하라고 추천하고 있다.
 
+##### setState\(\) 동작 이해
 
+사용법 이외, `setState()`의 동작\(특징\)을 잘 기억해 두면 좋다.
 
-setState\(\) 동작 이해
-
-사용법 이외, setState\(\)의 동작\(특징\)을 잘 기억해 두면 좋다. 
-
-* setState\(\)는 비동기적으로 구동된다. 바꾸어 말하면, synchronous하 동작을 보장하지 않는다.
-* setState\(\)는 즉시 값을 merge하지 않고, pending된 형태로 동작한다. 따라서 setState\(\)호출후 this.state로 값을 확인했을때, 값이 변경되어 있을 수도 있고, 안되어 있을 수도 있다.
-* setState\(\)을 호출하고나면, component life cycle 함수인 shouldComponentUpdate\(\)가 호출된다.
-* setState\(\)을 호출했다고 해서, 항상 re-rendering 되는 것은 아니다. 즉 shouldComponentUpdate\(\)의 리턴값에 따라 re-rendering 여부가 결정된다.
-
-
+* _**setState\(\)는 비동기적으로 구동**_된다. 바꾸어 말하면, synchronous하 동작을 보장하지 않는다.
+* _**setState\(\)는 즉시 값을 merge하지 않고, pending된 형태로 동작**_한다. 따라서 setState\(\)호출후 this.state로 값을 확인했을때, 값이 변경되어 있을 수도 있고, 안되어 있을 수도 있다.
+* _**setState\(\)을 호출**_하고나면, component life cycle 함수인 _**shouldComponentUpdate\(\)가 호출**_된다.
+* _**setState\(\)을 호출했다고 해서, 항상 re-rendering 되는 것은 아니다**_. 즉 `shouldComponentUpdate()`의 리턴값에 따라 `re-rendering` 여부가 결정된다.
 
 #### forceUpdate\(\)
 
