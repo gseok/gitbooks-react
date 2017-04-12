@@ -8,4 +8,5 @@
   * [React에서 PropTypes deprecated 해결하기](bd80-bd84-bd80-bd84-c9c0-c2dd-b4e4/reactc5d0-c11c-proptypes-deprecated-d574-acb0-d558-ae30.md)
   * [React Props와 State 개념 정리](bd80-bd84-bd80-bd84-c9c0-c2dd-b4e4/react-propsc640-state-ac1c-b150-c815-b9ac.md)
   * [React component lifecycle, API 정리](bd80-bd84-bd80-bd84-c9c0-c2dd-b4e4/react-component-lifecycle-api-c815-b9ac.md)
+  * [React setState와 forceUpdate 정리](bd80-bd84-bd80-bd84-c9c0-c2dd-b4e4/react-setstatec640-forceupdate-c815-b9ac.md)
 
