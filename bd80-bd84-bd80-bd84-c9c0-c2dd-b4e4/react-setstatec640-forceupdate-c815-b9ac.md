@@ -14,8 +14,6 @@ setState(nextState, callback)
 
 `nextState param`에 올 수 있는건 `Object` 또는 `Function`이다. 코드로 살펴보겠다.
 
-
-
 ##### nextState에 Object로 set 하는 경우.
 
 ```js
@@ -23,8 +21,6 @@ this.setState({myKey: 'my new value'});
 ```
 
 가장 기본적인 사용이다. 정상적으로 state가 변경되고 나면, component life cycle 로직\(`shouldComponentUpdate()`\)을 타게 된다.
-
-
 
 ##### nextState에 Function을 set 하는 경우.
 
@@ -37,8 +33,6 @@ this.setState((prevState, props) => {
 보통 이전 state값을 이용하면서 state값을 update할때 사용된다. 기본사용은 이전 state값을 merge해버리는 반면 명확하게, 이전값을 사용하거나, 이전값 비교등이 필요할때 사용하면 좋다.
 
 Fucntion형태로 set할때 setState가 동작하면서, function에 preveState\(이전 state\)와 props\(현재 props\)을 전달해준다.
-
-
 
 ##### state의 callback을 명시한 경우.
 
@@ -55,6 +49,14 @@ this.setState((prevState, props) => {
   console.log('setState complete');
 });
 ```
+
+setState의 두번째 param인 callback은 optional한 인자이다.
+
+nextState에 Object 형태를 쓰던, Function 형태를 쓰던, callback에 function으로 param을 줄 수 있다.
+
+setState의 callback은 setState가 완료되고 component가 re-rendered된 이후 호출된다. 따라서, re-rendered이후의 어던 확인이나 동작이 필요할때 간단히 기술해서 사용 가능하다.
+
+하지만, 공식 문서에는, 이 callback에서 어떤 동작을 하기보다는, componentDidUpdate\(\)을 사용하라고 추천하고 있다.
 
 
 
