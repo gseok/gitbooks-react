@@ -97,7 +97,7 @@ class Greeting extends React.Component {
       isLoggedIn: false
     };
   }
-  
+
   toggleLoginState() {
     this.setState((prevState) => {
         return {
