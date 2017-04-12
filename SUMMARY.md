@@ -10,4 +10,5 @@
   * [React component lifecycle, API 정리](bd80-bd84-bd80-bd84-c9c0-c2dd-b4e4/react-component-lifecycle-api-c815-b9ac.md)
   * [React setState와 forceUpdate 정리](bd80-bd84-bd80-bd84-c9c0-c2dd-b4e4/react-setstatec640-forceupdate-c815-b9ac.md)
   * [React state나 prop 조건에 따른 rendering 하기](bd80-bd84-bd80-bd84-c9c0-c2dd-b4e4/react-stateb098-prop-c870-ac74-c5d0-b530-b978-rendering-d558-ae30.md)
+  * [React JSX Inline에서 state나 prop 조건에 따른 rendering 하기](bd80-bd84-bd80-bd84-c9c0-c2dd-b4e4/react-jsx-inlinec5d0-c11c-state-b098-prop-c870-ac74-c5d0-b530-b978-rendering-d558-ae30.md)
 
