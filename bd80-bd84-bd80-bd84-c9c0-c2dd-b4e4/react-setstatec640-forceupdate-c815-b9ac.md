@@ -14,21 +14,49 @@ setState(nextState, callback)
 
 `nextState param`에 올 수 있는건 `Object` 또는 `Function`이다. 코드로 살펴보겠다.
 
+
+
 nextState에 Object로 set 하는 경우.
 
 ```js
 this.setState({myKey: 'my new value'});
 ```
 
-
+가장 기본적인 사용이다. 정상적으로 state가 변경되고 나면, component life cycle 로직\(`shouldComponentUpdate()`\)을 타게 된다. 
 
 
 
 nextState에 Function을 set 하는 경우.
 
+```js
+this.setState((prevState, props) => {
+  return {myInteger: prevState.myInteger + props.step};
+});
 ```
 
+보통 이전 state값을 이용하면서 state값을 update할때 사용된다. 기본사용은 이전 state값을 merge해버리는 반면 명확하게, 이전값을 사용하거나, 이전값 비교등이 필요할때 사용하면 좋다.
+
+Fucntion형태로 set할때 setState가 동작하면서, function에 preveState\(이전 state\)와 props\(현재 props\)을 전달해준다.
+
+
+
+state의 callback을 명시한 경우.
+
+```js
+this.setState({myKey: 'my new value'}, () => {
+  console.log('setState complete');
+});
+
+또는
+
+this.setState((prevState, props) => {
+  return {myInteger: prevState.myInteger + props.step};
+}, () => {
+  console.log('setState complete');
+});
 ```
+
+
 
 forceUpdate\(\)
 
