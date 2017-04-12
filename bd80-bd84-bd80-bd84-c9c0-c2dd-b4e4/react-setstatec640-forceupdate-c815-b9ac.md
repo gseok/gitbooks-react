@@ -1,8 +1,8 @@
-React setState와 forceUpdate 정리
+### React setState와 forceUpdate 정리
 
 `react`의 `component`관련 함수는 `component life cycle`에서 살펴보았다. 여기서는 `component`관련 함수중 life cycle에 간접적으로 영향을 주는 `setState()`와 `forceUpdate()`을 정리한다.
 
-setState\(\)
+#### setState\(\)
 
 ```js
 setState(nextState, callback)
@@ -16,17 +16,17 @@ setState(nextState, callback)
 
 
 
-nextState에 Object로 set 하는 경우.
+##### nextState에 Object로 set 하는 경우.
 
 ```js
 this.setState({myKey: 'my new value'});
 ```
 
-가장 기본적인 사용이다. 정상적으로 state가 변경되고 나면, component life cycle 로직\(`shouldComponentUpdate()`\)을 타게 된다. 
+가장 기본적인 사용이다. 정상적으로 state가 변경되고 나면, component life cycle 로직\(`shouldComponentUpdate()`\)을 타게 된다.
 
 
 
-nextState에 Function을 set 하는 경우.
+##### nextState에 Function을 set 하는 경우.
 
 ```js
 this.setState((prevState, props) => {
@@ -40,7 +40,7 @@ Fucntion형태로 set할때 setState가 동작하면서, function에 preveState\
 
 
 
-state의 callback을 명시한 경우.
+##### state의 callback을 명시한 경우.
 
 ```js
 this.setState({myKey: 'my new value'}, () => {
@@ -58,9 +58,9 @@ this.setState((prevState, props) => {
 
 
 
-forceUpdate\(\)
+#### forceUpdate\(\)
 
-참고
+#### 참고
 
 [react document](https://facebook.github.io/react/docs/react-component.html)
 
