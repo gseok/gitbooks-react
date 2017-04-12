@@ -73,21 +73,21 @@ this.setState((prevState, props) => {
 component.forceUpdate(callback)
 ```
 
-기본적으로, state나 props가 변경되면, component's을 re-render한다. 
+기본적으로, `state`나 `props`가 변경되면, `component's`을 `re-render`한다.
 
-하지만 state나 props가 아닌, 다른 data을 통해서, render\(\) 함수가 동작하게 되어 있는 경우가 있을 수 있다. 
+하지만 `state`나 `props`가 아닌, 다른 `data`을 통해서, `render()` 함수가 동작하게 되어 있는 경우가 있을 수 있다.
 
-이런 경우, React의 기본적인 component life cycle와 무관하기 때문에, 직접 React에게 해당 component가 re-rendering되야 한다고 알려야 한다. 이때 사용가능한 함수가 forceUpdate\(\) 이다.
+이런 경우, `React`의 기본적인 `component life cycle`와 무관하기 때문에, 직접 `React`에게 해당 `component`가 `re-rendering`되야 한다고 알려야 한다. 이때 사용가능한 함수가 `forceUpdate()` 이다.
 
 ##### forceUpdate\(\) 동작
 
-forceUpdate\(\)을 호출하면 곧바로 render\(\)가 호출된다. 즉 shouldComponentUpdate\(\)는 건너뛴다.
+`forceUpdate()`을 호출하면 곧바로 `render()`가 호출된다. 즉 `shouldComponentUpdate()`는 건너뛴다. 해당 메소드를 건너 뛰더라도, `child components`의 `life cycle method`는 _**정상적으로 다 호출**_된다. \(즉 `child component`의 `shouldComponentUpdate()`는 **호출**된다.\), 그렇다 하더라도, React는 DOM의 변경을 잘 찾아서 변경된 부분만 update해준다.
+
+
 
 ##### 주의
 
-React의 공식 document에는 forceUpdate\(\)의 사용을 최대한 피하고, this.props 와 this.state로 처리하도록 권고 하고 있다.
-
-
+`React`의 공식 document에는 `forceUpdate()`의 사용을 최대한 피하고, `this.props` 와 `this.state`로 처리하도록 권고 하고 있다.
 
 #### 참고
 
