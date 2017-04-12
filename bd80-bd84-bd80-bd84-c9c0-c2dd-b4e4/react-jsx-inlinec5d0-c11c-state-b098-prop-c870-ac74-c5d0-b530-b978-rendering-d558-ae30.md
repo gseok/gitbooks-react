@@ -1,4 +1,4 @@
-React JSX Inline에서 state나 prop 조건에 따른 rendering 하기
+### React JSX Inline에서 state나 prop 조건에 따른 rendering 하기
 
 #### Conditional Rendering
 
@@ -80,8 +80,6 @@ render() {
 > remember that whenever conditions become too complex, it might be a good time to
 >
 > [extract a component](https://facebook.github.io/react/docs/components-and-props.html#extracting-components).
-
-
 
 #### 참고
 
