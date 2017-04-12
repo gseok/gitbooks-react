@@ -12,4 +12,5 @@
   * [React state나 prop 조건에 따른 rendering 하기](bd80-bd84-bd80-bd84-c9c0-c2dd-b4e4/react-stateb098-prop-c870-ac74-c5d0-b530-b978-rendering-d558-ae30.md)
   * [React JSX Inline에서 state나 prop 조건에 따른 rendering 하기](bd80-bd84-bd80-bd84-c9c0-c2dd-b4e4/react-jsx-inlinec5d0-c11c-state-b098-prop-c870-ac74-c5d0-b530-b978-rendering-d558-ae30.md)
   * [React 컴포넌트 랜더링 막기, preventing component from rendering](bd80-bd84-bd80-bd84-c9c0-c2dd-b4e4/react-cef4-d3ec-b10c-d2b8-b79c-b354-b9c1-b9c9-ae302c-preventing-component-from-rendering.md)
+  * [React 에서 event handling 하는법 정리](bd80-bd84-bd80-bd84-c9c0-c2dd-b4e4/react-c5d0-c11c-event-handling-d558-b294-bc95-c815-b9ac.md)
 
