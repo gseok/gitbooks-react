@@ -39,7 +39,7 @@ class TestParent extends React.Component {
   }
 
   render() {
-    const parentPassedHandler = this.parentPassedHandler.bind(this);
+    const parentPassedHandler = this.parentHandler.bind(this);
 
     return (
       <TestChild parentPassedHandler={parentPassedHandler}/>
@@ -56,8 +56,6 @@ class TestParent extends React.Component {
 
 * 자식에서 발생하는 이벤트에 따라, 부모 자신이 어떤 동작을 하게 할 수 있다.
 * 자식에서 발생하는 이벤트에 따라, 자식 자신의 일을 한다음 부모에게 어떤 동작을 하게 할 수 있다.
-
-
 
 위 설명에서, 부모에게 어떤 동작을 하게 할 수 있다는 것은, 부모가 전달한 함수를 call 할 수 있다는 뜻이다.
 
