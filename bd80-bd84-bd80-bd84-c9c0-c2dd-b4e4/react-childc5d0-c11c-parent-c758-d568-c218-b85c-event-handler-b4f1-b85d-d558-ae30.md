@@ -19,6 +19,9 @@ class TestChild extends React.Component {
   }
 
   render() {
+    // 부모에서 props로 전달한 parentPassedHandler에
+    // 부모가 자신(this)을 bind 했으면, 해당 함수가 called 되었을때,
+    // 해당 함수의 this는 부모임.
     const parentPassedHandler = this.props.parentPassedHandler;
 
     return (
@@ -54,10 +57,7 @@ class TestParent extends React.Component {
 * 자식에서 발생하는 이벤트에 따라, 부모 자신이 어떤 동작을 하게 할 수 있다.
 * 자식에서 발생하는 이벤트에 따라, 자식 자신의 일을 한다음 부모에게 어떤 동작을 하게 할 수 있다.
 
-this에 대한 bind을 좀더 응용하면 다음과 같은 것도 가능하다.
 
-* 자식에서 바로 부모를 알 수 있다. \(부모가 this를 bind 한 상태로 전달해주면...\)
-* 자식에서 자식자기 자신을 부모에게 전달하면서, 부모에게 어떤 동작을 하게 할 수 있다.
 
 위 설명에서, 부모에게 어떤 동작을 하게 할 수 있다는 것은, 부모가 전달한 함수를 call 할 수 있다는 뜻이다.
 
