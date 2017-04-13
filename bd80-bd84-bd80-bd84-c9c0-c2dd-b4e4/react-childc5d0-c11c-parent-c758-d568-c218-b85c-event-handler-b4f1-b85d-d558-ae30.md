@@ -1,12 +1,10 @@
 #### React child에서 parent의 함수로 event handler 등록하기
 
-#### Advanced
+React에서 `event`를 `JSX`로 연결 할 수 있다는 것은, **아주 손쉽게**, 어떤 `component`에서 `event`에 따른 동작을 해당 `component`이외에, 자신을 사용하는 `component (부모 component)`에서 컨트롤 할 수 있도록 제공 가능하다는 이야기 이다.
 
-React에서 event를 JSX로 연결 할 수 있다는 것은, 아주 손쉽게, 어떤 component에서 event에 따른 동작을 해당 component이외에, 자신을 사용하는 component \(부모 component\)에서 컨트롤 할 수 있도록 제공 가능하다는 이야기 이다.
+즉 `prop`나 `state` 을 이용해서 `event handler`을 연결 할 수 있다는 이야기 이다.
 
-즉 prop나 state 을 이용해서 event handler을 연결 할 수 있다는 이야기 이다.
-
-예제로 살펴보자
+##### 예제로 살펴보자
 
 ```js
 class TestChild extends React.Component {
@@ -47,9 +45,9 @@ class TestParent extends React.Component {
 }
 ```
 
-위 예제에서는 TestParent에서 정의한 함수를 prop으로 자식에게 전달하였다.
+위 예제에서는 `TestParent`에서 정의한 함수를 `prop`으로 자식에게 전달하였다.
 
-TestChild는 부모가 전달한 함수를 자신\(Child\)의 event handler로 등록하였다.
+`TestChild`는 부모가 전달한 함수를 자신\(Child\)의 `event handler`로 등록하였다.
 
 좀 더 생각해 보면 다음과 같은 일이 가능하다.
 
